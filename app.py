@@ -6,10 +6,10 @@
 # 3. change directory (cd) to this file
 # 4. if already have venv:
 #       command line: conda activate streamlit-env
-#    if not:
+#    if not, need to activate the environment:
 #       command line: conda env create -f environment.yml
 #       command line: conda activate streamlit-env
-# 5. command line streamlit run app.py
+# 5. command line: streamlit run app.py
 # 6. continue code
 
 # if adding new packages to the .py file you MUST also add them to the requirements.txt file
@@ -76,6 +76,9 @@ with col2:
 
 # divider line
 st.divider() # 👈 Draws a horizontal line
+
+st.metric(label="Gas price", value=data['%'], delta=-0.5,
+    delta_color="inverse")
 
 ## Raw table
 st.table(data)

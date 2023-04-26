@@ -1,4 +1,4 @@
-,gvkey,cid,cnms,ctype,gareac,gareat,salecs,sid,stype,srcdate,conm,tic,cusip,CIK,sic,Symbol,Security,GICS Sector,GICS Sub-Industry,Headquarters Location,Date added,Founded
+zoo,gvkey,cid,cnms,ctype,gareac,gareat,salecs,sid,stype,srcdate,conm,tic,cusip,CIK,sic,Symbol,Security,GICS Sector,GICS Sub-Industry,Headquarters Location,Date added,Founded
 0,1075,22,Retail non-residential electric service,MARKET,,,1509.514,9,BUSSEG,2019-12-31,PINNACLE WEST CAPITAL CORP,PNW,723484101,764622.0,4911,PNW,Pinnacle West,Utilities,Multi-Utilities,"Phoenix, Arizona",1999-10-04,1985
 1,1075,21,Retail residential electric service,MARKET,,,1761.122,9,BUSSEG,2019-12-31,PINNACLE WEST CAPITAL CORP,PNW,723484101,764622.0,4911,PNW,Pinnacle West,Utilities,Multi-Utilities,"Phoenix, Arizona",1999-10-04,1985
 2,1075,23,Wholesale energy sales,MARKET,,,121.805,9,BUSSEG,2019-12-31,PINNACLE WEST CAPITAL CORP,PNW,723484101,764622.0,4911,PNW,Pinnacle West,Utilities,Multi-Utilities,"Phoenix, Arizona",1999-10-04,1985

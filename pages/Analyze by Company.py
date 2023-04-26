@@ -55,9 +55,22 @@ st.markdown(' # MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution
 # Plots side by side
 #############################################
 ## data for the figures 
-data = pd.read_csv('data/result.csv')
-fig1 = px.pie(data, values='%', names='Sell', title='MAKE A NEW TITLE HERE')
-fig2 = px.pie(data, values='%', names='Sell', title='MAKE A NEW TITLE HERE')
+raw = pd.read_csv('data/sample.csv')
+# sales for each sector,cytpe, date
+data = raw.groupby(['buyer','seller','year'])['sales'].transform(lambda x: sum(x))
+#data = pd.read_csv('data/result.csv')
+data2 = data.query()
+fig1 = px.pie(data2, values='sales', names='buyers', title='MAKE A NEW TITLE HERE')
+fig2 = px.pie(data2, values='sales', names='buyers', title='MAKE A NEW TITLE HERE')
+
+## select box
+company = st.selectbox(
+    'Select a company:',
+    ('A', 'B', 'C'))
+
+st.write('You selected:', company) #do not need
+
+### now need to tie company into the data selection...
 
 
 ## two columns
