@@ -55,13 +55,13 @@ st.markdown(' # MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution
 # Plots side by side
 #############################################
 ## data for the figures 
-raw = pd.read_csv('data/sample.csv')
-# sales for each sector,cytpe, date
-data = raw.groupby(['buyer','seller','year'])['sales'].transform(lambda x: sum(x))
-#data = pd.read_csv('data/result.csv')
-data2 = data.query()
-fig1 = px.pie(data2, values='sales', names='buyers', title='MAKE A NEW TITLE HERE')
-fig2 = px.pie(data2, values='sales', names='buyers', title='MAKE A NEW TITLE HERE')
+#raw = pd.read_csv('data/sample.csv')
+# # sales for each sector,cytpe, date
+# data = raw.groupby(['buyer','seller','year'])['sales'].transform(lambda x: sum(x))
+data = pd.read_csv('data/sample.csv')
+# data2 = data.query()
+fig1 = px.pie(data, values='sales', names='buyer', title='MAKE A NEW TITLE HERE')
+fig2 = px.pie(data, values='sales', names='buyer', title='MAKE A NEW TITLE HERE')
 
 ## select box
 company = st.selectbox(
@@ -69,6 +69,11 @@ company = st.selectbox(
     ('A', 'B', 'C'))
 
 st.write('You selected:', company) #do not need
+
+
+#####
+# LOOK AT DATAFRAME DEMO CODE for reference: https://docs.streamlit.io/library/get-started/multipage-apps/create-a-multipage-app
+#####
 
 ### now need to tie company into the data selection...
 
