@@ -70,8 +70,8 @@ with st.sidebar:
 # data = raw.groupby(['buyer','seller','year'])['sales'].transform(lambda x: sum(x))
 data = pd.read_csv('data/sample.csv')
 # data2 = data.query()
-fig1 = px.pie(data, values='sales', names='buyer', title='MAKE A NEW TITLE HERE')
-fig2 = px.pie(data, values='sales', names='buyer', title='MAKE A NEW TITLE HERE')
+fig1 = px.pie(data, values='sales', names='buyer', title='2019')
+fig2 = px.pie(data, values='sales', names='buyer', title='2022')
 
 ## select box
 company = st.selectbox(
@@ -87,16 +87,14 @@ st.write('You selected:', company) #do not need
 
 ### now need to tie company into the data selection...
 
-
+st.header('2019 vs 2022: descriptive thing')
 ## two columns
 col1, col2 = st.columns(2)
 
 with col1:
-   st.header("2019")
    st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
 with col2:
-   st.header("2022")
    st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
 # divider line
@@ -104,7 +102,7 @@ st.divider() # 👈 Draws a horizontal line
 
 ### columns with accounting data
 
-st.metric(label="Gas price", value=data.iloc[0,3], delta=-0.5, delta_color="inverse")
+st.metric(label="Gas price", value=data.iloc[0,2], delta=-0.5, delta_color="inverse")
 
 # divider line
 st.divider() # 👈 Draws a horizontal line
