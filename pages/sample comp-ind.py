@@ -41,7 +41,7 @@ st.set_page_config(
 ###############################################################################
 # starting: "main" page of dashboard
 ###############################################################################
-st.markdown(' # MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*') 
+# st.markdown(' # MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*') 
 # below is another way to do the headers/write text can either use """ or ''' before & after the text
 #  """
 # # Header 1 (can make this a)
@@ -49,12 +49,46 @@ st.markdown(' # MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution
 # """
 
 # below is another another wat to do it
-# st.title(' MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*') 
+# st.title(' MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*')
+
+#############################################
+# Data
+#############################################
+raw_data = pd.read_csv('data/sample.csv')
+
+'''
+# overall site
+## describing what is happeing
+
+
+image at the bootome of the industry breakdown by sales - just form the first csv file
+## Industry: bla bla bal
+'''
+## Goes on the overall page!!!
+# ## overall pie chart
+# fig0_1 = px.pie(raw_data, values='sales', names='seller', title = "Total Sales from Compustat For each Seller")
+# st.plotly_chart(fig0_1, theme="streamlit", use_container_width=True)
+
+
+st.bar_chart(data = raw_data, x = 'seller', y = 'sales', use_container_width=True)
+# make x the industry
+
+'''
+### List of sellers in the industry
+if we want we can have to top preformer in the idnstry ??
+'''
+
 
 #############################################
 # Sidebar
 #############################################
 with st.sidebar:
+    st.sidebar.subheader("Seller Company")
+
+    seller = list(raw_data.seller.unique())
+    seller_selection = st.sidebar.selectbox(
+        "Select Seller Company", seller)
+    
     '''
     ---
     [Source code and contributors here.](https://github.com/donbowen/portfolio-frontier-streamlit-dashboard)
@@ -62,23 +96,23 @@ with st.sidebar:
 
 
 #############################################
+# Filtered
+#############################################
+data = raw_data[raw_data["seller"] == seller_selection]
+symbol = "SOL"  # make symbol = seler_selection but differernt column in the df (try below code)
+# symbol = data['symbol'].values[0]
+
+#############################################
+# Header and Info
+#############################################
+st.write('#', seller_selection, "(", symbol,")")
+
+#############################################
 # Plots side by side
 #############################################
-## data for the figures 
-#raw = pd.read_csv('data/sample.csv')
-# # sales for each sector,cytpe, date
-# data = raw.groupby(['buyer','seller','year'])['sales'].transform(lambda x: sum(x))
-data = pd.read_csv('data/sample.csv')
-# data2 = data.query()
-fig1 = px.pie(data, values='sales', names='buyer', title='2019')
-fig2 = px.pie(data, values='sales', names='buyer', title='2022')
 
-## select box
-company = st.selectbox(
-    'Select a company:',
-    ('A', 'B', 'C'))
-
-st.write('You selected:', company) #do not need
+fig1 = px.pie(data[data["year"] == 2019], values='sales', names='buyer', title='2019')
+fig2 = px.pie(data[data["year"] == 2022], values='sales', names='buyer', title='2022')
 
 
 #####
@@ -101,6 +135,7 @@ with col2:
 st.divider() # 👈 Draws a horizontal line
 
 ### columns with accounting data
+## 2019 Rates
 
 st.metric(label="Gas price", value=data.iloc[0,2], delta=-0.5, delta_color="inverse")
 
@@ -108,10 +143,14 @@ st.metric(label="Gas price", value=data.iloc[0,2], delta=-0.5, delta_color="inve
 st.divider() # 👈 Draws a horizontal line
 
 ## Raw table
-with st.expander("Dataframe for above charts"):
+with st.expander("Raw DataFrame"):
     '''
-    ### Dataframe
+    CIK: represents bla bal bal
     '''
+    st.table(raw_data)
+
+# Filtered Table
+with st.expander("Filtered DataFrame"):
     st.table(data)
 
 
