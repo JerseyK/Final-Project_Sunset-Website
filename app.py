@@ -4,12 +4,8 @@
 # 1. open this code
 # 2. open terminal
 # 3. change directory (cd) to this file
-# 4. if already have venv:
-#       command line: conda activate streamlit-env
-#    if not, need to activate the environment:
-#       command line: conda env create -f environment.yml
-#       command line: conda activate streamlit-env
-# 5. command line: streamlit run app.py
+# 4. command line: conda activate streamlit-env
+# 5.command line streamlit run app.py
 # 6. continue code
 
 # if adding new packages to the .py file you MUST also add them to the requirements.txt file
@@ -25,8 +21,6 @@
 #
 #     conda deactivate
 
-## TO MAKE PAGES:
-# make a folder called "pages" w/i the repo and then pages will be created automatically
 
 #############################################
 # Imports/Page Setup
@@ -37,59 +31,56 @@ import plotly.express as px
 import streamlit as st
 import altair as alt
 
-
 # Page config
 st.set_page_config(
     page_title="Hello",
-    page_icon = "📊",
+    page_icon ="📊",
+    layout = "wide"
 )
 
 ###############################################################################
 # starting: "main" page of dashboard
 ###############################################################################
-st.markdown('# MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*') 
-# below is another way to do the headers/write text can either use """ or ''' before & after the text
-#  """
-# # Header 1 (can make this a)
-# ## subhearder
-# """
 
 #############################################
-# Plots side by side
+# Data
 #############################################
-## data for the figures 
-data = pd.read_csv('data/result.csv')
-fig1 = px.pie(data, values='%', names='Sell', title='MAKE A NEW TITLE HERE')
-fig2 = px.pie(data, values='%', names='Sell', title='MAKE A NEW TITLE HERE')
+raw_data = pd.read_csv('data/compustat_final.csv')
+'''
+# overall site
+## describing what is happeing
 
 
-## two columns
-col1, col2 = st.columns(2)
+image at the bootome of the industry breakdown by sales - just form the first csv file
+## Industry: bla bla bal
+'''
+## Goes on the overall page!!!
+# ## overall pie chart
+# fig0_1 = px.pie(raw_data, values='sales', names='seller', title = "Total Sales from Compustat For each Seller")
+# st.plotly_chart(fig0_1, theme="streamlit", use_container_width=True)
 
-with col1:
-   st.header("2019")
-   st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
+data_2019 = raw_data[raw_data["fyear"] == 2019]
+data_2022 = raw_data[raw_data["fyear"] == 2022]
 
-with col2:
-   st.header("2022")
-   st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
+'''
+### 2019
+'''
+st.bar_chart(data = data_2019, x = 'GICS Sector', y = 'salecs', use_container_width=True, height = 700)
 
-# divider line
-st.divider() # 👈 Draws a horizontal line
+'''
+### 2022
+as can be seen by the below bar chart, there is quite a bit of missing compustat data for 2022
+'''
+st.bar_chart(data = data_2022, x = 'GICS Sector', y = 'salecs', use_container_width=True, height = 700)
 
-st.metric(label="Gas price", value=data['%'], delta=-0.5,
-    delta_color="inverse")
+'''
+### List of sellers in the industry
+if we want we can have to top preformer in the idnstry ??
+'''
 
-## Raw table
-st.table(data)
-
-###############################################################################
-
-
-###############################################################################
-
-
-#############################################
-# start: plot
-#############################################
-
+with st.expander("Raw DataFrame"):
+    st.table(raw_data)
+with st.expander("2019 DataFrame"):
+    st.table(data_2019)
+with st.expander("2022 DataFrame"):
+    st.table(data_2022)

@@ -1,28 +1,4 @@
 #############################################
-# Getting started
-#############################################
-# 1. open this code
-# 2. open terminal
-# 3. change directory (cd) to this file
-# 4. command line: conda activate streamlit-env
-# 5.command line streamlit run app.py
-# 6. continue code
-
-# if adding new packages to the .py file you MUST also add them to the requirements.txt file
-# After doing so update the environment (MUST BE IN THE SAME FOLDER as the prior enviorment)
-# Command Line: conda env update --name streamlit-env --file environment.yml --prune
-
-#Note: 
-# To activate this environment, use
-#
-#     conda activate streamlit-env
-#
-# To deactivate an active environment, use
-#
-#     conda deactivate
-
-
-#############################################
 # Imports/Page Setup
 #############################################
 import numpy as np
@@ -33,42 +9,57 @@ import altair as alt
 
 # Page config
 st.set_page_config(
-    page_title="Mapping Demo",
+    page_title="Hello",
     page_icon ="📊",
+    layout = "wide"
 )
 
 ###############################################################################
 # starting: "main" page of dashboard
 ###############################################################################
-st.markdown(' # MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*') 
-# below is another way to do the headers/write text can either use """ or ''' before & after the text
-#  """
-# # Header 1 (can make this a)
-# ## subhearder
-# """
 
-# below is another another wat to do it
-# st.title(' MATCH TITLE TO TAB TITLE OR MAKE IT *Overall Seller Distrubution*') 
+#############################################
+# Data
+#############################################
+raw_data = pd.read_csv('data/compustat_final.csv')
+raw_acct_data = pd.read_csv('data/accounting_final.csv')
+#############################################
+# Sidebar
+#############################################
+with st.sidebar:
+    st.sidebar.subheader("Seller Company")
 
+    seller = list(raw_data.conm.unique())
+    seller_selection = st.sidebar.selectbox(
+        "Select Seller Company", seller)
+    
+    '''
+    ---
+    [Source code and contributors here.](https://github.com/donbowen/portfolio-frontier-streamlit-dashboard)
+    '''
+
+
+#############################################
+# Filtered
+#############################################
+#compustat data
+data = raw_data[raw_data["conm"] == seller_selection]
+symbol = data['Symbol'].values[0]
+
+#accounding data
+acct = raw_acct_data[raw_acct_data["conm"] == seller_selection]
+
+#############################################
+# Header and Info
+#############################################
+st.write('#', seller_selection, "(", symbol,")")
 
 #############################################
 # Plots side by side
 #############################################
-## data for the figures 
-#raw = pd.read_csv('data/sample.csv')
-# # sales for each sector,cytpe, date
-# data = raw.groupby(['buyer','seller','year'])['sales'].transform(lambda x: sum(x))
-data = pd.read_csv('data/sample.csv')
-# data2 = data.query()
-fig1 = px.pie(data, values='sales', names='buyer', title='MAKE A NEW TITLE HERE')
-fig2 = px.pie(data, values='sales', names='buyer', title='MAKE A NEW TITLE HERE')
 
-## select box
-company = st.selectbox(
-    'Select a company:',
-    ('A', 'B', 'C'))
-
-st.write('You selected:', company) #do not need
+fig1 = px.pie(data[data["fyear"] == 2019], values='salecs', names='ctype', title='2019')
+fig2 = px.pie(data[data["fyear"] == 2022], values='salecs', names='ctype', title='2022')
 
 
 #####
@@ -77,23 +68,50 @@ st.write('You selected:', company) #do not need
 
 ### now need to tie company into the data selection...
 
-
+st.header('2019 vs 2022: descriptive thing')
+st.markdown('*describe this data*')
 ## two columns
 col1, col2 = st.columns(2)
 
 with col1:
-   st.header("2019")
-   st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
+    st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
 with col2:
-   st.header("2022")
-   st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
+    st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
+    st.markdown("some companies do not have 2022 data, so no chart will appear above")
+
+
 
 # divider line
-st.divider() # 👈 Draws a horizontal line
+st.divider() # Draws a horizontal line
+
+### columns with accounting data
+## 2019 Rates
+
+
+## WORK ON METRICS!!!👈 👈 👈 👈 👈  
+st.subheader('Analysis:')
+col1, col2, col3, col4, col5 = st.columns(5)
+with col1: 
+    st.metric(label="AP", value=acct.iloc[-1,5], delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
+
+# divider line
+st.divider() # Draws a horizontal line
 
 ## Raw table
-st.table(data)
+with st.expander("Raw DataFrame"):
+    '''
+    CIK: represents bla bal bal
+    '''
+    st.table(raw_data)
+
+# Filtered Table
+with st.expander("Filtered COMP DataFrame"):
+    st.table(data)
+with st.expander("Raw Acct DataFrame"):
+    st.table(raw_acct_data)
+with st.expander("Filtered ACCT DataFrame"):
+    st.table(acct)
 
 
 

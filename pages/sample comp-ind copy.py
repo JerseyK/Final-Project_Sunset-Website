@@ -70,7 +70,7 @@ image at the bootome of the industry breakdown by sales - just form the first cs
 # st.plotly_chart(fig0_1, theme="streamlit", use_container_width=True)
 
 
-st.bar_chart(data = raw_data, x = 'seller', y = 'sales', use_container_width=True)
+st.bar_chart(data = raw_data[raw_data["year"] == 2019], x = 'seller', y = 'sales', use_container_width=True)
 # make x the industry
 
 '''
