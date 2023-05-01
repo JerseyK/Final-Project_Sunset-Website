@@ -32,11 +32,6 @@ with st.sidebar:
     seller = list(raw_data.conm.unique())
     seller_selection = st.sidebar.selectbox(
         "Select Seller Company", seller)
-    
-    '''
-    ---
-    [Source code and contributors here.](https://github.com/donbowen/portfolio-frontier-streamlit-dashboard)
-    '''
 
 
 #############################################
@@ -72,11 +67,11 @@ st.header('2019 vs 2022: descriptive thing')
 st.write("#### The pie charts below describe the breakdown of (", symbol,")'s sales:")
 ctype1, ctype2 = st.columns(2)
 ctype3, ctype4, ctype5 = st.columns(3)
-st.markdown('- MARKET: Sale types (On-site, Merchant, Sale of equipment, etc.)') 
-st.markdown('- COMPANY: Compannies (Apple Inc, Wal-Mart Stores Inc, etc.)')
-st.markdown('- GEOREG: Places (United States, International, China, Europe, etc.)') 
-st.markdown('- GOVDOM: US Governemnt/agencies (US Gov, DOD, Medicaid/Medicare)') 
-st.markdown('- GOVFRN: Foreign Governments(Europe, Asia Pacific, Middle East, Other)')
+st.markdown('- MARKET: Sale Types (On-site, Merchant, Sale of equipment, Direct to Consumer, eCommerce, Food, etc.)') 
+st.markdown('- COMPANY: Companies (Apple Inc, Wal-Mart Stores Inc, etc.)')
+st.markdown('- GEOREG: Geographic Region (United States, International, China, Europe, etc.)') 
+st.markdown('- GOVDOM: US Government (US Gov, DOD, Medicaid/Medicare)') 
+st.markdown('- GOVFRN: Foreign Government (Europe, Asia Pacific, Middle East, Other)')
 
 ## two columns
 col1, col2 = st.columns(2)
@@ -99,16 +94,16 @@ st.divider() # Draws a horizontal line
 st.subheader('2022 Values Analysis:')
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1: 
-    st.metric(label="AP", value=acct.iloc[-1,5], delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
-    st.metric(label="AT", value=acct.iloc[-1,6], delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
-    st.metric(label="CAPX", value=acct.iloc[-1,7], delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
-    st.metric(label="COGS", value=acct.iloc[-1,8], delta=acct.iloc[-1,20]) # make this -1 so it is the last in the dataset
-    st.metric(label="EPSFX", value=acct.iloc[-1,9], delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
-    st.metric(label="GP", value=acct.iloc[-1,10], delta=acct.iloc[-1,22]) # make this -1 so it is the last in the dataset
-    st.metric(label="INVT", value=acct.iloc[-1,11], delta=acct.iloc[-1,23]) # make this -1 so it is the last in the dataset
-    st.metric(label="NI", value=acct.iloc[-1,12], delta=acct.iloc[-1,24]) # make this -1 so it is the last in the dataset
-    st.metric(label="RECT", value=acct.iloc[-1,13], delta=acct.iloc[-1,25]) # make this -1 so it is the last in the dataset
-    st.metric(label="SALE", value=acct.iloc[-1,14], delta=acct.iloc[-1,26]) # make this -1 so it is the last in the dataset
+    st.metric(label="AP", value="$"+str(acct.iloc[-1,5])+' M', delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
+    st.metric(label="AT", value="$"+str(acct.iloc[-1,6])+' M', delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
+    st.metric(label="CAPX", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
+    st.metric(label="COGS", value="$"+str(acct.iloc[-1,8])+' M', delta=acct.iloc[-1,20]) # make this -1 so it is the last in the dataset
+    st.metric(label="EPSFX", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
+    st.metric(label="GP", value="$"+str(acct.iloc[-1,10])+' M', delta=acct.iloc[-1,22]) # make this -1 so it is the last in the dataset
+    st.metric(label="INVT", value="$"+str(acct.iloc[-1,11])+' M', delta=acct.iloc[-1,23]) # make this -1 so it is the last in the dataset
+    st.metric(label="NI", value="$"+str(acct.iloc[-1,12])+' M', delta=acct.iloc[-1,24]) # make this -1 so it is the last in the dataset
+    st.metric(label="RECT", value="$"+str(acct.iloc[-1,13])+' M', delta=acct.iloc[-1,25]) # make this -1 so it is the last in the dataset
+    st.metric(label="SALE", value="$"+str(acct.iloc[-1,14])+' M', delta=acct.iloc[-1,26]) # make this -1 so it is the last in the dataset
     
 st.write('describe  what it means ')
 
