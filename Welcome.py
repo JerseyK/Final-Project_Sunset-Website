@@ -47,31 +47,47 @@ st.set_page_config(
 #############################################
 raw_data = pd.read_csv('data/compustat_final.csv')
 '''
-# The Impact of COVID-19 on the Supply Chain from a Financial Persepective
-## describing what is happeing
+# Impact of COVID-19 on Supply Chain from a Financial Perspective
+The COVID-19 pandemic has had a significant impact on the global economy and disrupted supply chains across various industries. As a result, we conducted an analysis of the financial factors affecting several seller companies. We focused on companies that are in the S&P 500 as of 2022 and used data from financial reports in 2019 and 2022 to gain insights into how the pandemic has affected their financial performance.
+
+#### Initial Hypotheses:
+1. The amount of technology based companies would increase in 2022. 
+2. The amount of contracts involving healthcare/pharmaceutical companies would also increase. 
+3. There would be more new firms in healthcare and technology in 2022 in comparison to 2019.
 
 
-image at the bootome of the industry breakdown by sales - just form the first csv file
-## Industry: bla bla bal
+
+## Industry:
+The Global Industry Classification Standard (GICS) comprises 11 sectors that provide a comprehensive framework for organizing companies based on their primary business activities. However, after cleaning our data to compare the changes between 2019 and 2022, we found that only 8 sectors remained: **Materials**, **Industrials**, **Consumer Discretionary**, **Consumer Staples**, **Health Care**, **Financials**, **Information Technology**, and **Communication Services**. These sectors will be the focus of our analysis to gain insights into the changing trends and performance of companies within these industries.
+
+### Below is a breakdown comparing 2019 and 2022 industry sales (`salecs`).
+
 '''
-## Goes on the overall page!!!
-# ## overall pie chart
-# fig0_1 = px.pie(raw_data, values='sales', names='seller', title = "Total Sales from Compustat For each Seller")
-# st.plotly_chart(fig0_1, theme="streamlit", use_container_width=True)
-
 data_2019 = raw_data[raw_data["fyear"] == 2019]
 data_2022 = raw_data[raw_data["fyear"] == 2022]
 
-'''
-### 2019
-'''
-st.bar_chart(data = data_2019, x = 'GICS Sector', y = 'salecs', use_container_width=True, height = 700)
 
-'''
-### 2022
-as can be seen by the below bar chart, there is quite a bit of missing compustat data for 2022
-'''
-st.bar_chart(data = data_2022, x = 'GICS Sector', y = 'salecs', use_container_width=True, height = 700)
+
+chart_2019 = alt.Chart(data_2019).mark_bar().encode(
+    y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000])),
+    x=alt.X('GICS Sector'))
+
+chart_2022 = alt.Chart(data_2022).mark_bar().encode(
+    y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000])),
+    x=alt.X('GICS Sector'))
+
+col1, col2 = st.columns(2)
+with col1:
+    '''
+    ### 2019
+    '''
+    st.altair_chart(chart_2019, use_container_width=True, theme = 'streamlit')
+
+with col2:
+    '''
+    ### 2022
+    '''
+    st.altair_chart(chart_2022, use_container_width=True, theme = 'streamlit')
 
 '''
 ### List of sellers in the industry
