@@ -70,10 +70,15 @@ fig2 = px.pie(data[data["fyear"] == 2022], values='salecs', names='ctype', title
 
 st.header('2019 vs 2022: descriptive thing')
 st.write("#### The pie charts below describe the breakdown of (", symbol,")'s sales:")
-st.write('MARKET', 'COMPANY', 'GEOREG', 'GOVDOM', 'GOVFRN')
+ctype1, ctype2 = st.columns(2)
+ctype3, ctype4, ctype5 = st.columns(3)
+st.markdown('- MARKET: add info here') 
+st.markdown('- COMPANY: ')
+st.markdown('- GEOREG: ') 
+st.markdown('- GOVDOM: ') 
+st.markdown('- GOVFRN: ')
 ## two columns
 col1, col2 = st.columns(2)
-
 with col1:
     st.plotly_chart(fig1, theme="streamlit", use_container_width=True)
 
