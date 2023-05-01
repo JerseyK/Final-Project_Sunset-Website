@@ -5,7 +5,7 @@
 # 2. open terminal
 # 3. change directory (cd) to this file
 # 4. command line: conda activate streamlit-env
-# 5.command line streamlit run app.py
+# 5.command line streamlit run Welcome.py
 # 6. continue code
 
 # if adding new packages to the .py file you MUST also add them to the requirements.txt file
@@ -33,8 +33,8 @@ import altair as alt
 
 # Page config
 st.set_page_config(
-    page_title="Hello",
-    page_icon ="📊",
+    page_title="Project - Sunset",
+    page_icon ="🌅",
     layout = "wide"
 )
 
@@ -47,7 +47,7 @@ st.set_page_config(
 #############################################
 raw_data = pd.read_csv('data/compustat_final.csv')
 '''
-# overall site
+# The Impact of COVID-19 on the Supply Chain from a Financial Persepective
 ## describing what is happeing
 
 
