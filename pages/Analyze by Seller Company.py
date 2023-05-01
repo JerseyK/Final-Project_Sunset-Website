@@ -69,7 +69,8 @@ fig2 = px.pie(data[data["fyear"] == 2022], values='salecs', names='ctype', title
 ### now need to tie company into the data selection...
 
 st.header('2019 vs 2022: descriptive thing')
-st.markdown('*describe this data*')
+st.write("#### The pie charts below describe the breakdown of (", symbol,")'s sales:")
+st.write('MARKET', 'COMPANY', 'GEOREG', 'GOVDOM', 'GOVFRN')
 ## two columns
 col1, col2 = st.columns(2)
 
@@ -78,7 +79,6 @@ with col1:
 
 with col2:
     st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
-    st.markdown("some companies do not have 2022 data, so no chart will appear above")
 
 
 
@@ -99,7 +99,7 @@ with col1:
 st.divider() # Draws a horizontal line
 
 ## Raw table
-with st.expander("Raw DataFrame"):
+with st.expander("Cleaned DataFrame"):
     '''
     CIK: represents bla bal bal
     '''
@@ -108,7 +108,7 @@ with st.expander("Raw DataFrame"):
 # Filtered Table
 with st.expander("Filtered COMP DataFrame"):
     st.table(data)
-with st.expander("Raw Acct DataFrame"):
+with st.expander("Cleaned Acct DataFrame"):
     st.table(raw_acct_data)
 with st.expander("Filtered ACCT DataFrame"):
     st.table(acct)
