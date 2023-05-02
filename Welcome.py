@@ -45,7 +45,6 @@ st.set_page_config(
 #############################################
 # Data
 #############################################
-raw_data = pd.read_csv('data/compustat_final.csv')
 '''
 # Impact of COVID-19 on Supply Chain from a Financial Perspective
 The COVID-19 pandemic has had a significant impact on the global economy and disrupted supply chains across various industries. As a result, we conducted an analysis of the financial factors affecting several companies. We focused on companies that are in the S&P 500 as of 2022 and used data from financial reports in 2019 and 2022 to gain insights into how the pandemic has affected their financial performance.
@@ -61,9 +60,10 @@ The Global Industry Classification Standard (GICS) comprises 11 sectors that pro
 ### Below is a breakdown comparing 2019 and 2022 industry sales (`salecs`).
 
 '''
+
+raw_data = pd.read_csv('data/compustat_final.csv')
 data_2019 = raw_data[raw_data["fyear"] == 2019]
 data_2022 = raw_data[raw_data["fyear"] == 2022]
-
 
 
 chart_2019 = alt.Chart(data_2019).mark_bar().encode(
@@ -88,9 +88,14 @@ with col2:
     st.altair_chart(chart_2022, use_container_width=True, theme = 'streamlit')
 
 '''
-### List of companies in each industry
+### Companies in each industry:
 if we want we can have to top preformer in the idnstry ??
 '''
+sums = raw_data.groupby(['GICS Sector','fyear'])['salecs'].sum()
+st.write(sums)
+
+grouped = raw_data.groupby('GICS Sector')['Symbol'].apply(lambda x: list(set(x)))
+st.write(grouped)
 
 # divider line
 st.divider() # Draws a horizontal line
