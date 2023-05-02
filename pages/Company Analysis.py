@@ -101,35 +101,59 @@ st.divider() # Draws a horizontal line
 ### columns with accounting data
 ## 2019 Rates
 
+if pd.notna(acct.iloc[-1,14]):
+    st.subheader('2022 Accounting Data:')
 
-st.subheader('2022 Accounting Data:')
-
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1: 
-    st.metric(label="Net Sales [sale]", value="$"+str(acct.iloc[-1,14])+' M', delta=acct.iloc[-1,26]) # make this -1 so it is the last in the dataset
-    st.metric(label="Total Receivables [rect]", value="$"+str(acct.iloc[-1,13])+' M', delta=acct.iloc[-1,25]) # make this -1 so it is the last in the dataset
-
-
-with col2: 
-    st.metric(label="Cost of Goods Sold [cogs]", value="$"+str(acct.iloc[-1,8])+' M', delta=acct.iloc[-1,20]) # make this -1 so it is the last in the dataset
-    st.metric(label="Accounts Payable - Trade [ap]", value="$"+str(acct.iloc[-1,5])+' M', delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
-
-with col3:
-    st.metric(label="Gross Profit [gp]", value="$"+str(acct.iloc[-1,10])+' M', delta=acct.iloc[-1,22]) # make this -1 so it is the last in the dataset
-    st.metric(label="Total Inventories [invt]", value="$"+str(acct.iloc[-1,11])+' M', delta=acct.iloc[-1,23]) # make this -1 so it is the last in the dataset
-
-with col4:  
-    st.metric(label="Net Income (Loss) [ni]", value="$"+str(acct.iloc[-1,12])+' M', delta=acct.iloc[-1,24]) # make this -1 so it is the last in the dataset
-    st.metric(label="Total Assets [at]", value="$"+str(acct.iloc[-1,6])+' M', delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
-
-with col5: 
-    st.metric(label="Earnings Per Share (Basic) [epsfx]", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
-    st.metric(label="Capital Expenditures [capx]", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col1: 
+        st.metric(label="Net Sales [sale]", value="$"+str(acct.iloc[-1,14])+' M', delta=acct.iloc[-1,26]) # make this -1 so it is the last in the dataset
+        st.metric(label="Total Receivables [rect]", value="$"+str(acct.iloc[-1,13])+' M', delta=acct.iloc[-1,25]) # make this -1 so it is the last in the dataset
 
 
-st.write('***Note:** The numbers in green/red show the precent change from 2019 to 2022*')
+    with col2: 
+        st.metric(label="Cost of Goods Sold [cogs]", value="$"+str(acct.iloc[-1,8])+' M', delta=acct.iloc[-1,20]) # make this -1 so it is the last in the dataset
+        st.metric(label="Accounts Payable - Trade [ap]", value="$"+str(acct.iloc[-1,5])+' M', delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
+
+    with col3:
+        st.metric(label="Gross Profit [gp]", value="$"+str(acct.iloc[-1,10])+' M', delta=acct.iloc[-1,22]) # make this -1 so it is the last in the dataset
+        st.metric(label="Total Inventories [invt]", value="$"+str(acct.iloc[-1,11])+' M', delta=acct.iloc[-1,23]) # make this -1 so it is the last in the dataset
+
+    with col4:  
+        st.metric(label="Net Income (Loss) [ni]", value="$"+str(acct.iloc[-1,12])+' M', delta=acct.iloc[-1,24]) # make this -1 so it is the last in the dataset
+        st.metric(label="Total Assets [at]", value="$"+str(acct.iloc[-1,6])+' M', delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
+
+    with col5: 
+        st.metric(label="Earnings Per Share (Basic) [epsfx]", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
+        st.metric(label="Capital Expenditures [capx]", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
 
 
+    st.write('***Note:** The numbers in green/red show the percent change from 2019 to 2022*')
+
+if pd.isna(acct.iloc[-1,14]):
+    st.subheader('2019 Accounting Data:')
+
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col1: 
+        st.metric(label="Net Sales [sale]", value="$"+str(acct.iloc[0,14])+' M') # make this 0 so it is the first in the dataset
+        st.metric(label="Total Receivables [rect]", value="$"+str(acct.iloc[0,13])+' M') # make this 0 so it is the first in the dataset
+
+    with col2: 
+        st.metric(label="Cost of Goods Sold [cogs]", value="$"+str(acct.iloc[0,8])+' M') # make this 0 so it is the first in the dataset
+        st.metric(label="Accounts Payable - Trade [ap]", value="$"+str(acct.iloc[0,5])+' M') # make this 0 so it is the first in the dataset
+
+    with col3:
+        st.metric(label="Gross Profit [gp]", value="$"+str(acct.iloc[0,10])+' M') # make this 0 so it is the first in the dataset
+        st.metric(label="Total Inventories [invt]", value="$"+str(acct.iloc[0,11])+' M') # make this 0 so it is the first in the dataset
+
+    with col4:  
+        st.metric(label="Net Income (Loss) [ni]", value="$"+str(acct.iloc[0,12])+' M') # make this 0 so it is the first in the dataset
+        st.metric(label="Total Assets [at]", value="$"+str(acct.iloc[0,6])+' M') # make this 0 so it is the first in the dataset
+
+    with col5: 
+        st.metric(label="Earnings Per Share (Basic) [epsfx]", value="$"+str(acct.iloc[0,9])+' M') # make this 0 so it is the first in the dataset
+        st.metric(label="Capital Expenditures [capx]", value="$"+str(acct.iloc[0,7])+' M') # make this 0 so it is the first in the dataset
+    
+    st.write('***Note:** There is no accounting data for 2022 for this company*')
 
 # divider line
 st.divider() # Draws a horizontal line
