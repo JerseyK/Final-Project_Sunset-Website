@@ -133,10 +133,11 @@ code6 = '''filtered_out_df['fyear'] = pd.to_datetime(filtered_out_df['srcdate'])
 st.code(code6, 'python')
 
 '''
-Lastly, we then filtered out any firms that didn't have filings in both 2019 and 2022. This left us with 89 unique firms. This is a number we would be able to use to check on our final merge.
+Lastly, we then filtered out any firms that didn't have filings in both 2019 and 2022. We also noticed that there was no 2019 Compustat data for `gvkey = 25313`, so we dropped this firm. This left us with 88 unique firms. This is a number we would be able to use to check on our final merge.
 '''
 
-code7 = '''filtered = filtered_out_df.groupby('gvkey').filter(lambda x: x['fyear'].max() == 2022)'''
+code7 = '''filtered = filtered_out_df.groupby('gvkey').filter(lambda x: x['fyear'].max() == 2022)
+filtered = filtered[filtered.gvkey != 25313]'''
 st.code(code7, 'python')
 
 '''
@@ -180,7 +181,7 @@ for index, row in acct_df.iloc[1:].iterrows():
 st.code(code11, 'python')
 '''
 ### Final Datasets
-For our final dataset we merged elements from the Compustat/SP500 dataset with the accounting dataset. We took `filtered` and kept our desired columns of `gvkey`, `fyear`, `conm`, `Symbol`, `CIK`. The next thing we did was drop duplicates so that we could be able to match firms in the accounting dataset. The final merge left us with 89 unique firms. (The same amount we found earlier in `filtered`). 
+For our final dataset we merged elements from the Compustat/SP500 dataset with the accounting dataset. We took `filtered` and kept our desired columns of `gvkey`, `fyear`, `conm`, `Symbol`, `CIK`. The next thing we did was drop duplicates so that we could be able to match firms in the accounting dataset. The final merge left us with 88 unique firms. (The same amount we found earlier in `filtered`). 
 '''
 
 code12 = '''cleaned_comp = filtered[['gvkey', 'fyear', 'conm', 'Symbol', 'CIK']]
