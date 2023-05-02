@@ -251,9 +251,9 @@ Overall, despite the challenging business environment subsequent to the COVID-19
 '''
 ## About the Team:
 [Kyra Grodman](https://www.linkedin.com/in/kyragrodman/): BS in Finance and Business Infomation Systems
-<br>
+
 [Jersey Krupp](https://www.linkedin.com/in/jersey-ann-krupp/): MS in Financial Engineering
-<br>
+
 [Qiyu Yang](https://www.linkedin.com/in/qiyu-yang-672577222/): MS in Financial Engineering
 
 *The snippets of code are from our [Analysis Github Repository](https://github.com/JerseyK/Final-Project_Sunset).*
