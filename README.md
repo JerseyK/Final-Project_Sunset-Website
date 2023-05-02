@@ -1,4 +1,4 @@
-# Welcome to our [team project website!](https://jerseyk-final-project-sunset-website-welcome-eoomf2.streamlit.app)
+# Welcome to our [Team Project Website!](https://jerseyk-final-project-sunset-website-welcome-eoomf2.streamlit.app)
 
 This is a website to showcase our final project for FIN 377 - Data Science for Finance course at Lehigh University.
 
