@@ -76,31 +76,37 @@ chart_2022 = alt.Chart(data_2022).mark_bar().encode(
 
 col1, col2 = st.columns(2)
 with col1:
-    '''
-    #### 2019
-    '''
-    st.altair_chart(chart_2019, use_container_width=True, theme = 'streamlit')
+    col3, col4 = st.columns(2)
+    with col3:
+        '''
+        #### 2019
+        '''
+        st.altair_chart(chart_2019, use_container_width=True, theme = 'streamlit')
+    with col4:
+        sums2019 = data_2019.groupby('GICS Sector')['salecs'].sum()
+        st.write(sums2019)
 
 with col2:
-    '''
-    #### 2022
-    '''
-    st.altair_chart(chart_2022, use_container_width=True, theme = 'streamlit')
+    col3, col4 = st.columns(2)
+    with col3:
+        '''
+        #### 2022
+        '''
+        st.altair_chart(chart_2022, use_container_width=True, theme = 'streamlit')
+    with col4:
+        sums2022 = data_2022.groupby('GICS Sector')['salecs'].sum()
+        st.write(sums2022, use_container_width = True)
 
 '''
-### Companies in each industry:
-if we want we can have to top preformer in the idnstry ??
+### Companies in Each Industry:
 '''
-sums = raw_data.groupby(['GICS Sector','fyear'])['salecs'].sum()
-st.write(sums)
-
 grouped = raw_data.groupby('GICS Sector')['Symbol'].apply(lambda x: list(set(x)))
-st.write(grouped)
+st.dataframe(grouped, use_container_width = True)
 
 # divider line
 st.divider() # Draws a horizontal line
 
-st.subheader('DataFrames for above:')
+st.subheader('DataFrames:')
 with st.expander("2019 DataFrame"):
     st.table(data_2019)
 with st.expander("2022 DataFrame"):

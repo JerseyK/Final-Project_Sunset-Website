@@ -134,7 +134,7 @@ st.write('***Note:** The numbers in green/red show the precent change from 2019 
 # divider line
 st.divider() # Draws a horizontal line
 
-st.subheader('DataFrames for above:')
+st.subheader('DataFrames:')
 
 
 # DataFrames
