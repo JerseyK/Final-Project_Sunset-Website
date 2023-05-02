@@ -53,8 +53,6 @@ The COVID-19 pandemic has had a significant impact on the global economy and dis
 #### Initial Hypotheses:
 1. The amount of technology based companies would increase in 2022. 
 2. The amount of contracts involving healthcare/pharmaceutical companies would also increase. 
-3. There would be more new firms in healthcare and technology in 2022 in comparison to 2019.
-
 
 
 ## Industry:
