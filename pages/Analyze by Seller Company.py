@@ -10,7 +10,7 @@ import altair as alt
 # Page config
 st.set_page_config(
     page_title="Analyze by Seller Company",
-    page_icon ="📊",
+    page_icon ="🌅",
     layout = "wide"
 )
 
@@ -91,25 +91,25 @@ st.subheader('2022 Accounting Data:')
 
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1: 
-    st.metric(label="SALE", value="$"+str(acct.iloc[-1,14])+' M', delta=acct.iloc[-1,26]) # make this -1 so it is the last in the dataset
-    st.metric(label="RECT", value="$"+str(acct.iloc[-1,13])+' M', delta=acct.iloc[-1,25]) # make this -1 so it is the last in the dataset
+    st.metric(label="Net Sales [sale]", value="$"+str(acct.iloc[-1,14])+' M', delta=acct.iloc[-1,26]) # make this -1 so it is the last in the dataset
+    st.metric(label="Total Receivables [rect]", value="$"+str(acct.iloc[-1,13])+' M', delta=acct.iloc[-1,25]) # make this -1 so it is the last in the dataset
 
 
 with col2: 
-    st.metric(label="COGS", value="$"+str(acct.iloc[-1,8])+' M', delta=acct.iloc[-1,20]) # make this -1 so it is the last in the dataset
-    st.metric(label="AP", value="$"+str(acct.iloc[-1,5])+' M', delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
+    st.metric(label="Cost of Goods Sold [cogs]", value="$"+str(acct.iloc[-1,8])+' M', delta=acct.iloc[-1,20]) # make this -1 so it is the last in the dataset
+    st.metric(label="Accounts Payable - Trade [ap]", value="$"+str(acct.iloc[-1,5])+' M', delta=acct.iloc[-1,17]) # make this -1 so it is the last in the dataset
 
 with col3:
-    st.metric(label="GP", value="$"+str(acct.iloc[-1,10])+' M', delta=acct.iloc[-1,22]) # make this -1 so it is the last in the dataset
-    st.metric(label="INVT", value="$"+str(acct.iloc[-1,11])+' M', delta=acct.iloc[-1,23]) # make this -1 so it is the last in the dataset
+    st.metric(label="Gross Profit [gp]", value="$"+str(acct.iloc[-1,10])+' M', delta=acct.iloc[-1,22]) # make this -1 so it is the last in the dataset
+    st.metric(label="Total Inventories [invt]", value="$"+str(acct.iloc[-1,11])+' M', delta=acct.iloc[-1,23]) # make this -1 so it is the last in the dataset
 
 with col4:  
-    st.metric(label="NI", value="$"+str(acct.iloc[-1,12])+' M', delta=acct.iloc[-1,24]) # make this -1 so it is the last in the dataset
-    st.metric(label="AT", value="$"+str(acct.iloc[-1,6])+' M', delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
+    st.metric(label="Net Income (Loss) [ni]", value="$"+str(acct.iloc[-1,12])+' M', delta=acct.iloc[-1,24]) # make this -1 so it is the last in the dataset
+    st.metric(label="Total Assets [at]", value="$"+str(acct.iloc[-1,6])+' M', delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
 
 with col5: 
-    st.metric(label="EPSFX", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
-    st.metric(label="CAPX", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
+    st.metric(label="Earnings Per Share (Basic)", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
+    st.metric(label="Capital Expenditures", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
 
 st.write('describe  what it means ')
 
@@ -119,18 +119,18 @@ st.write('describe  what it means ')
 st.divider() # Draws a horizontal line
 
 ## Raw table
-with st.expander("Cleaned DataFrame"):
-    '''
-    CIK: represents bla bal bal
-    '''
-    st.table(raw_data)
+# with st.expander("Cleaned DataFrame"):
+#     '''
+#     CIK: represents bla bal bal
+#     '''
+#     st.table(raw_data)
 
 # Filtered Table
-with st.expander("Filtered COMP DataFrame"):
+with st.expander("Filtered Compustat DataFrame"):
     st.table(data)
-with st.expander("Cleaned Acct DataFrame"):
-    st.table(raw_acct_data)
-with st.expander("Filtered ACCT DataFrame"):
+# with st.expander("Cleaned Acct DataFrame"):
+#     st.table(raw_acct_data)
+with st.expander("Filtered Accounting DataFrame"):
     st.table(acct)
 
 
