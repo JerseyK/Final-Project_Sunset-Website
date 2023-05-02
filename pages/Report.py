@@ -89,21 +89,21 @@ st.code(code2, 'python')
 
 '''
 **Accounting 2018-2022**: We provided Dr. Bowen with a list of unique `gvkeys` along with a request for data for the following accounting variables:
-- fyear (fiscal year)
-- sale (net sales)
-- rect (receivables/total)
-- invt (inventories)
-- ap (accounts payable - trade)
-- ib (income before extraordinary items)
-- ni (net income (loss))
-- obidp (operating income before depreciation)
-- at (total assets)
-- capx (capex, dollar amount)
-- capxv (capex ratio for current fiscal year)
-- cogs (cost of goods sold)
-- gp (gross profit)
-- epsfx (eps basic (takes into account the actual number of shares outstanding, and does not include any potentially dilutive securities))
-- acominc (net income)
+- **fyear:** fiscal year
+- **sale:** net sales
+- **rect:** receivables/total
+- **invt:** inventories
+- **ap:** accounts payable - trade
+- **ib:** income before extraordinary items
+- **ni:** net income (loss)
+- **obidp:** operating income before depreciation
+- **at:** total assets
+- **capx:** capex, dollar amount
+- **capxv:** capex ratio for current fiscal year
+- **cogs:** cost of goods sold
+- **gp:** gross profit
+- **epsfx:** eps basic
+- **acominc:** net income
     
 With this new dataset we then performed [EDA](https://github.com/JerseyK/Final-Project_Sunset/blob/d3a36fde0bb19d897fb15effcb85ffb0f04ec78b/data_eda.ipynb). After running that we found that:
 - There are 26905 observations
@@ -241,12 +241,20 @@ with st.expander("Cleaned Accounting DataFrame"):
 
 '''
 ## Conclusion:
+Our final results include 88 companies. We dropped companies in real estate, utilities and energy sectors because of the lack of data from the 2019 and 2022 financial reports. This could be a possible limitation for our analysis, however, we feel that the sample size is still strong enough to be used as a representation of how the supply chain was impacted by the COVID-19 pandemic.
 
+Looking at our results, we see that except for the IT industry and healthcare industry, most industries experienced a decrease in sales. Take these two companies for instance. **NVIDIA Corporation**, an IT company, had a significant increase in the demand for computer-related products, including GPUs, due to the shift towards remote work, distance learning, and increased usage of video streaming services. They been successful in expanding its reach into new markets, such as data centers, autonomous vehicles and AI. NVIDIA saw a 147.06% increase in net sales from 2019 to 2022. **CATALENT INC**, a healthcare company, provided advanced delivery technologies, development, and manufacturing services for drugs, biologics, and consumer health products. They especially collaborated with several pharmaceutical companies to support the development and production of vaccines and therapies. From 2019 to 2002, CATALENT saw a 91.74% increase in net sales.
+
+Overall, despite the challenging business environment subsequent to the COVID-19 pandemic, the IT industry was able to maintain its performance and even improve its sales. This underscores the resilience of the industry and the importance of digitalization in the current business landscape. We can see from our visualization that the IT industry increased in sales by about half a million dollars from 2019 to 2022. These findings support the need for companies to adapt to the changing business landscape by embracing digitalization and other innovative strategies to remain competitive in today's economy.
 '''
 
 '''
 ## About the Team:
-Add Names :: Name :: Name
+[Kyra Grodman](https://www.linkedin.com/in/kyragrodman/): BS in Finance and Business Infomation Systems
+<br>
+[Jersey Krupp](https://www.linkedin.com/in/jersey-ann-krupp/): MS in Financial Engineering
+<br>
+[Qiyu Yang](https://www.linkedin.com/in/qiyu-yang-672577222/): MS in Financial Engineering
 
 *The snippets of code are from our [Analysis Github Repository](https://github.com/JerseyK/Final-Project_Sunset).*
 
