@@ -9,7 +9,7 @@ import altair as alt
 
 # Page config
 st.set_page_config(
-    page_title="Analyze by Seller Company",
+    page_title="Company Analysis",
     page_icon ="🌅",
     layout = "wide"
 )
@@ -27,11 +27,11 @@ raw_acct_data = pd.read_csv('data/accounting_final.csv')
 # Sidebar
 #############################################
 with st.sidebar:
-    st.sidebar.subheader("Seller Company")
+    st.sidebar.subheader("Company Analysis")
 
     seller = list(raw_data.conm.unique())
     seller_selection = st.sidebar.selectbox(
-        "Select Seller Company", seller)
+        "Select Company (Seller)", seller)
 
 
 #############################################
@@ -40,6 +40,12 @@ with st.sidebar:
 #compustat data
 data = raw_data[raw_data["conm"] == seller_selection]
 symbol = data['Symbol'].values[0]
+Industry = data['GICS Sector'].values[0]
+SubIndustry = data['GICS Sub-Industry'].values[0]
+HeadQ= data['Headquarters Location'].values[0]
+Founded = data['Founded'].values[0]
+
+
 
 #accounding data
 acct = raw_acct_data[raw_acct_data["conm"] == seller_selection]
@@ -47,7 +53,17 @@ acct = raw_acct_data[raw_acct_data["conm"] == seller_selection]
 #############################################
 # Header and Info
 #############################################
+st.title("Company Analysis:")
 st.write('##', seller_selection, "(", symbol,")")
+col1, col2, col3, col4 = st.columns(4)
+with col1:
+    st.write('**Industry:** ',Industry)
+with col2:
+    st.write('**Sub-Industry:** ',SubIndustry)
+with col3:
+    st.write('**Headquarters Location:** ',HeadQ)
+with col4:
+    st.write('**Date Founded:** ',Founded)
 
 #############################################
 # Plots side by side
@@ -57,7 +73,7 @@ fig1 = px.pie(data[data["fyear"] == 2019], values='salecs', names='ctype', title
 fig2 = px.pie(data[data["fyear"] == 2022], values='salecs', names='ctype', title='2022')
 
 ### now need to tie company into the data selection...
-st.write("#### The pie charts below describe the breakdown of (", symbol,")'s sales:")
+st.write("#### Breakdown of ", symbol,"'s sales:")
 
 ## two columns
 col1, col2 = st.columns(2)
@@ -86,7 +102,6 @@ st.divider() # Draws a horizontal line
 ## 2019 Rates
 
 
-## WORK ON METRICS!!!👈 👈 👈 👈 👈  
 st.subheader('2022 Accounting Data:')
 
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -108,28 +123,24 @@ with col4:
     st.metric(label="Total Assets [at]", value="$"+str(acct.iloc[-1,6])+' M', delta=acct.iloc[-1,18]) # make this -1 so it is the last in the dataset
 
 with col5: 
-    st.metric(label="Earnings Per Share (Basic)", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
-    st.metric(label="Capital Expenditures", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
+    st.metric(label="Earnings Per Share (Basic) [epsfx]", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
+    st.metric(label="Capital Expenditures [capx]", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
 
-st.write('describe  what it means ')
+
+st.write('***Note:** The numbers in green/red show the precent change from 2019 to 2022*')
 
 
 
 # divider line
 st.divider() # Draws a horizontal line
 
-## Raw table
-# with st.expander("Cleaned DataFrame"):
-#     '''
-#     CIK: represents bla bal bal
-#     '''
-#     st.table(raw_data)
+st.subheader('DataFrames for above:')
 
-# Filtered Table
+
+# DataFrames
 with st.expander("Filtered Compustat DataFrame"):
     st.table(data)
-# with st.expander("Cleaned Acct DataFrame"):
-#     st.table(raw_acct_data)
+
 with st.expander("Filtered Accounting DataFrame"):
     st.table(acct)
 

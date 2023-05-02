@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 # Page config
 st.set_page_config(
@@ -11,6 +12,7 @@ st.set_page_config(
 # Report
 #############################################
 '''
+# Report:
 ## Methodology
 ### Data Collection
 To create and run our file we used various imports such as `pandas`, `numpy`, `os`, and `seaborn`. In addition to those general python imports, we also used `insufficient_but_starting_eda` from `eda.py` which is located in the [community codebook](https://github.com/LeDataSciFi/ledatascifi-2023/tree/main/community_codebook). We used three different datasets to create one final dataset to be displayed visually through analysis on our dashboard.
@@ -18,7 +20,33 @@ To create and run our file we used various imports such as `pandas`, `numpy`, `o
 [S&P 500](https://github.com/JerseyK/Final-Project_Sunset/blob/d3a36fde0bb19d897fb15effcb85ffb0f04ec78b/inputs/sp500_2022.csv): We scraped data from Wikipedia to create this dataset to filter for SP500 companies.
 
 [Compustat Customer Supplier](https://github.com/JerseyK/Final-Project_Sunset/blob/d3a36fde0bb19d897fb15effcb85ffb0f04ec78b/inputs/cust_supply_2019_2022.csv): This dataset contained raw data provided by Dr. Bowen that showed filings between customers and suppliers between 2019 and 2022.
+'''
 
+with st.expander("Column Variable Description"):
+    st.markdown(
+    '''
+    These variables describe the seller firm a row of data:   
+    - **gvkey:** a unique identifier for the company (Global Company Key)
+    - **sic:** Standard Industrial Classification code, a numerical code used to classify industries
+    - **cusip:** CUSIP number, a unique identifier for a security
+    - **cik:** SEC Central Index Key, a unique identifier for a company
+    - **tic:** stock ticker symbol
+    - **conm:** company name
+    - **srcdate:** source date
+
+    These variables describe the customer of the firm and say something about the relationship type:
+    - **cid:** a unique identifier for the customer
+    - **cnms:** customer name
+    - **ctype:** customer type
+    - **gareac:** geographic area code
+    - **gareat:** geographic area type
+    - **salecs:** sales in current period (in millions)
+    - **sid:** segment identifier
+    - **stype:** segment type
+    '''
+    )
+
+'''
 [Accounting 2018-2022](https://github.com/JerseyK/Final-Project_Sunset/blob/d3a36fde0bb19d897fb15effcb85ffb0f04ec78b/inputs/acct_data.csv): This dataset was also provided by Dr. Bowen and is comprised of accounting variables we requested.
 '''
 
@@ -200,6 +228,16 @@ accounting.to_csv("outputs/accounting_final.csv", index = False)
 filtered.to_csv("outputs/compustat_final.csv", index = False)'''
 st.code(code13, 'python')
 
+
+
+# DataFrames
+raw_data = pd.read_csv('data/compustat_final.csv')
+raw_acct_data = pd.read_csv('data/accounting_final.csv')
+
+with st.expander("Cleaned Compustat DataFrame"):
+    st.table(raw_data)
+with st.expander("Cleaned Accounting DataFrame"):
+    st.table(raw_acct_data)
 
 '''
 ## Conclusion:
