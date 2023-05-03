@@ -1,18 +1,15 @@
 #############################################
 # Getting started
-#############################################
-# 1. open this code
-# 2. open terminal
-# 3. change directory (cd) to this file
-# 4. command line: conda activate streamlit-env
-# 5.command line streamlit run Welcome.py
-# 6. continue code
+############################################# 
+# 1. Open this code
+# 2. Open terminal
+# 3. Change directory (cd) to this file
+# 4. Command Line: conda activate streamlit-env
+#            To create ENV :: Command Line: conda env create -f environment.yml
+# 5. Command Line streamlit run Welcome.py
+# 6. Continue coding!
 
-# if adding new packages to the .py file you MUST also add them to the requirements.txt file
-# After doing so update the environment (MUST BE IN THE SAME FOLDER as the prior enviorment)
-# Command Line: conda env update --name streamlit-env --file environment.yml --prune
-
-#Note: 
+# Note: 
 # To activate this environment, use
 #
 #     conda activate streamlit-env
@@ -21,6 +18,18 @@
 #
 #     conda deactivate
 
+
+### Adding New Packages:
+# if adding new packages to the .py file you MUST also add them to the requirements.txt file
+# After doing so update the environment (MUST BE IN THE SAME FOLDER as the prior environment)
+# Command Line: conda env update --name streamlit-env --file environment.yml --prune
+
+
+### Creating Pages:
+# - Create a folder called `pages` &  add other `.py` files there
+#   - This file is the main file and should NOT be in the `pages` folder
+# - The name of the `.py` files is what the "page" will be titled in the sidebar
+# for more detail visit: https://docs.streamlit.io/library/get-started/multipage-apps/create-a-multipage-app
 
 #############################################
 # Imports/Page Setup
@@ -39,12 +48,8 @@ st.set_page_config(
 )
 
 ###############################################################################
-# starting: "main" page of dashboard
+# Starting: "main" page of dashboard
 ###############################################################################
-
-#############################################
-# Data
-#############################################
 '''
 # Impact of COVID-19 on Supply Chain from a Financial Perspective
 The COVID-19 pandemic has had a significant impact on the global economy and disrupted supply chains across various industries. As a result, we conducted an analysis of the financial factors affecting several companies. We focused on companies that are in the S&P 500 as of 2022 and used data from financial reports in 2019 and 2022 to gain insights into how the pandemic has affected their financial performance.
@@ -60,12 +65,17 @@ The Global Industry Classification Standard (GICS) comprises 11 sectors that pro
 ### Below is a breakdown comparing 2019 and 2022 industry sales (`salecs`).
 
 '''
-
+#############################################
+# Data
+#############################################
 raw_data = pd.read_csv('data/compustat_final.csv')
 data_2019 = raw_data[raw_data["fyear"] == 2019]
 data_2022 = raw_data[raw_data["fyear"] == 2022]
 
-
+#############################################
+# Charts & Tables/DataFrames
+#############################################
+### creating the charts
 chart_2019 = alt.Chart(data_2019).mark_bar().encode(
     y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000])),
     x=alt.X('GICS Sector'))
@@ -74,6 +84,7 @@ chart_2022 = alt.Chart(data_2022).mark_bar().encode(
     y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000])),
     x=alt.X('GICS Sector'))
 
+### displaying the charts
 col1, col2 = st.columns(2)
 with col1:
     col3, col4 = st.columns(2)
@@ -97,6 +108,9 @@ with col2:
         sums2022 = data_2022.groupby('GICS Sector')['salecs'].sum()
         st.write(sums2022, use_container_width = True)
 
+#############################################
+# Table/DataFrame
+#############################################
 '''
 ### Companies in Each Industry:
 '''
@@ -106,6 +120,9 @@ st.dataframe(grouped, use_container_width = True)
 # divider line
 st.divider() # Draws a horizontal line
 
+#############################################
+# DataFrames
+#############################################
 st.subheader('DataFrames:')
 with st.expander("2019 DataFrame"):
     st.table(data_2019)

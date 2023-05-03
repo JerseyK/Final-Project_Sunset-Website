@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 ###############################################################################
-# starting: "main" page of dashboard
+# Starting: "main" page of dashboard
 ###############################################################################
 
 #############################################
@@ -23,31 +23,31 @@ st.set_page_config(
 #############################################
 raw_data = pd.read_csv('data/compustat_final.csv')
 raw_acct_data = pd.read_csv('data/accounting_final.csv')
+
 #############################################
 # Sidebar
 #############################################
 with st.sidebar:
     st.sidebar.subheader("Company Analysis")
 
-    seller = list(raw_data.conm.unique())
+    seller = list(sorted(raw_data['conm'].unique()))
     seller_selection = st.sidebar.selectbox(
         "Select Company (Seller)", seller)
-
 
 #############################################
 # Filtered
 #############################################
-#compustat data
+### compustat data
 data = raw_data[raw_data["conm"] == seller_selection]
+
+# from the filtered data, getting values from the datafame 
 symbol = data['Symbol'].values[0]
 Industry = data['GICS Sector'].values[0]
 SubIndustry = data['GICS Sub-Industry'].values[0]
 HeadQ= data['Headquarters Location'].values[0]
 Founded = data['Founded'].values[0]
 
-
-
-#accounding data
+### accounding data
 acct = raw_acct_data[raw_acct_data["conm"] == seller_selection]
 
 #############################################
@@ -68,13 +68,12 @@ with col4:
 #############################################
 # Plots side by side
 #############################################
-
+### making the plots
 fig1 = px.pie(data[data["fyear"] == 2019], values='salecs', names='ctype', title='2019')
 fig2 = px.pie(data[data["fyear"] == 2022], values='salecs', names='ctype', title='2022')
 
-### now need to tie company into the data selection...
+### plotting the plots
 st.write("#### Breakdown of ", symbol,"'s sales:")
-
 ## two columns
 col1, col2 = st.columns(2)
 with col1:
@@ -83,9 +82,7 @@ with col1:
 with col2:
     st.plotly_chart(fig2, theme="streamlit", use_container_width=True)
 
-
-
-
+### describing the plots
 col1, col2 = st.columns(2)
 with col1:
     st.markdown('- **MARKET**: Sale Types (On-site, Merchant, Sale of equipment, Direct to Consumer, eCommerce, Food, etc.)') 
@@ -98,10 +95,11 @@ with col2:
 # divider line
 st.divider() # Draws a horizontal line
 
-### columns with accounting data
-## 2019 Rates
-
-if pd.notna(acct.iloc[-1,14]):
+#############################################
+# Accounting Data
+#############################################
+### if have 2022 Accounting data
+if pd.notna(acct.iloc[-1,14]):  # looking at the cell value
     st.subheader('2022 Accounting Data:')
 
     col1, col2, col3, col4, col5 = st.columns(5)
@@ -126,10 +124,11 @@ if pd.notna(acct.iloc[-1,14]):
         st.metric(label="Earnings Per Share (Basic) [epsfx]", value="$"+str(acct.iloc[-1,9])+' M', delta=acct.iloc[-1,21]) # make this -1 so it is the last in the dataset
         st.metric(label="Capital Expenditures [capx]", value="$"+str(acct.iloc[-1,7])+' M', delta=acct.iloc[-1,19]) # make this -1 so it is the last in the dataset
 
-
     st.write('***Note:** The numbers in green/red show the percent change from 2019 to 2022*')
 
-if pd.isna(acct.iloc[-1,14]):
+
+### if do NOT have 2022 Accounting data, use the 2019 accounting data
+if pd.isna(acct.iloc[-1,14]):  # looking at the cell value
     st.subheader('2019 Accounting Data:')
 
     col1, col2, col3, col4, col5 = st.columns(5)
@@ -158,8 +157,10 @@ if pd.isna(acct.iloc[-1,14]):
 # divider line
 st.divider() # Draws a horizontal line
 
+#############################################
+# DataFrames
+#############################################
 st.subheader('DataFrames:')
-
 
 # DataFrames
 with st.expander("Filtered Compustat DataFrame"):

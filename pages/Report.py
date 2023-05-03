@@ -228,8 +228,6 @@ accounting.to_csv("outputs/accounting_final.csv", index = False)
 filtered.to_csv("outputs/compustat_final.csv", index = False)'''
 st.code(code13, 'python')
 
-
-
 # DataFrames
 raw_data = pd.read_csv('data/compustat_final.csv')
 raw_acct_data = pd.read_csv('data/accounting_final.csv')
