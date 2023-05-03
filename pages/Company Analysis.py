@@ -53,7 +53,7 @@ acct = raw_acct_data[raw_acct_data["conm"] == seller_selection]
 #############################################
 # Header and Info
 #############################################
-st.title("Company Analysis:")
+st.title("Company Analysis")
 st.write('##', seller_selection, "(", symbol,")")
 col1, col2, col3, col4 = st.columns(4)
 with col1:
@@ -73,7 +73,7 @@ fig1 = px.pie(data[data["fyear"] == 2019], values='salecs', names='ctype', title
 fig2 = px.pie(data[data["fyear"] == 2022], values='salecs', names='ctype', title='2022')
 
 ### plotting the plots
-st.write("#### Breakdown of ", symbol,"'s sales:")
+st.write("#### Breakdown of ", symbol,"'s sales")
 ## two columns
 col1, col2 = st.columns(2)
 with col1:
@@ -100,7 +100,7 @@ st.divider() # Draws a horizontal line
 #############################################
 ### if have 2022 Accounting data
 if pd.notna(acct.iloc[-1,14]):  # looking at the cell value
-    st.subheader('2022 Accounting Data:')
+    st.subheader('2022 Accounting Data')
 
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1: 
@@ -129,7 +129,7 @@ if pd.notna(acct.iloc[-1,14]):  # looking at the cell value
 
 ### if do NOT have 2022 Accounting data, use the 2019 accounting data
 if pd.isna(acct.iloc[-1,14]):  # looking at the cell value
-    st.subheader('2019 Accounting Data:')
+    st.subheader('2019 Accounting Data')
 
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1: 
@@ -160,7 +160,7 @@ st.divider() # Draws a horizontal line
 #############################################
 # DataFrames
 #############################################
-st.subheader('DataFrames:')
+st.subheader('DataFrames')
 
 # DataFrames
 with st.expander("Filtered Compustat DataFrame"):

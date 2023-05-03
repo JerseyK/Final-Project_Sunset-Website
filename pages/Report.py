@@ -12,7 +12,7 @@ st.set_page_config(
 # Report
 #############################################
 '''
-# Report:
+# Report
 ## Methodology
 ### Data Collection
 To create and run our file we used various imports such as `pandas`, `numpy`, `os`, and `seaborn`. In addition to those general python imports, we also used `insufficient_but_starting_eda` from `eda.py` which is located in the [community codebook](https://github.com/LeDataSciFi/ledatascifi-2023/tree/main/community_codebook). We used three different datasets to create one final dataset to be displayed visually through analysis on our dashboard.

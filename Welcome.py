@@ -54,15 +54,15 @@ st.set_page_config(
 # Impact of COVID-19 on Supply Chain from a Financial Perspective
 The COVID-19 pandemic has had a significant impact on the global economy and disrupted supply chains across various industries. As a result, we conducted an analysis of the financial factors affecting several companies. We focused on companies that are in the S&P 500 as of 2022 and used data from financial reports in 2019 and 2022 to gain insights into how the pandemic has affected their financial performance.
 
-#### Initial Hypotheses:
+#### Initial Hypotheses
 1. The amount of technology based companies would increase in 2022. 
 2. The amount of contracts involving healthcare/pharmaceutical companies would also increase. 
 
 
-## Industry Analysis:
+## Industry Analysis
 The Global Industry Classification Standard (GICS) comprises 11 sectors that provide a comprehensive framework for organizing companies based on their primary business activities. However, after cleaning our data to compare the changes between 2019 and 2022, we found that only 8 sectors remained: **Materials**, **Industrials**, **Consumer Discretionary**, **Consumer Staples**, **Health Care**, **Financials**, **Information Technology**, and **Communication Services**. These sectors will be the focus of our analysis to gain insights into the changing trends and performance of companies within these industries.
 
-### Below is a breakdown comparing 2019 and 2022 industry sales (`salecs`).
+### Comparing 2019 and 2022 industry sales (`salecs`)
 
 '''
 #############################################
@@ -112,7 +112,7 @@ with col2:
 # Table/DataFrame
 #############################################
 '''
-### Companies in Each Industry:
+### Companies in Each Industry
 '''
 grouped = raw_data.groupby('GICS Sector')['Symbol'].apply(lambda x: list(set(x)))
 st.dataframe(grouped, use_container_width = True)
@@ -123,7 +123,7 @@ st.divider() # Draws a horizontal line
 #############################################
 # DataFrames
 #############################################
-st.subheader('DataFrames:')
+st.subheader('DataFrames')
 with st.expander("2019 DataFrame"):
     st.table(data_2019)
 with st.expander("2022 DataFrame"):
