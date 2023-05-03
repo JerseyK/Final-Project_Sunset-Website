@@ -238,7 +238,7 @@ with st.expander("Cleaned Accounting DataFrame"):
     st.table(raw_acct_data)
 
 '''
-## Conclusion:
+## Conclusion
 Our final results include 88 companies. We dropped companies in real estate, utilities and energy sectors because of the lack of data from the 2019 and 2022 financial reports. This could be a possible limitation for our analysis, however, we feel that the sample size is still strong enough to be used as a representation of how the supply chain was impacted by the COVID-19 pandemic.
 
 Looking at our results, we see that except for the IT industry and healthcare industry, most industries experienced a decrease in sales. Take these two companies for instance. **NVIDIA Corporation**, an IT company, had a significant increase in the demand for computer-related products, including GPUs, due to the shift towards remote work, distance learning, and increased usage of video streaming services. They been successful in expanding its reach into new markets, such as data centers, autonomous vehicles and AI. NVIDIA saw a 147.06% increase in net sales from 2019 to 2022. **CATALENT INC**, a healthcare company, provided advanced delivery technologies, development, and manufacturing services for drugs, biologics, and consumer health products. They especially collaborated with several pharmaceutical companies to support the development and production of vaccines and therapies. From 2019 to 2002, CATALENT saw a 91.74% increase in net sales.
@@ -247,7 +247,7 @@ Overall, despite the challenging business environment subsequent to the COVID-19
 '''
 
 '''
-## About the Team:
+## About the Team
 [Kyra Grodman](https://www.linkedin.com/in/kyragrodman/): BS in Finance and Business Infomation Systems
 
 [Jersey Krupp](https://www.linkedin.com/in/jersey-ann-krupp/): MS in Financial Engineering
