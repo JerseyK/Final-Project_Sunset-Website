@@ -87,26 +87,24 @@ chart_2022 = alt.Chart(data_2022).mark_bar().encode(
 ### displaying the charts
 col1, col2 = st.columns(2)
 with col1:
-    col3, col4 = st.columns(2)
-    with col3:
-        '''
-        #### 2019
-        '''
-        st.altair_chart(chart_2019, use_container_width=True, theme = 'streamlit')
-    with col4:
+
+    '''
+    #### 2019
+    '''
+    st.altair_chart(chart_2019, use_container_width=True, theme = 'streamlit')
+    with st.expander("Total Sales for 2019"):
         sums2019 = data_2019.groupby('GICS Sector')['salecs'].sum()
         st.write(sums2019)
 
 with col2:
-    col3, col4 = st.columns(2)
-    with col3:
-        '''
-        #### 2022
-        '''
-        st.altair_chart(chart_2022, use_container_width=True, theme = 'streamlit')
-    with col4:
+    '''
+    #### 2022
+    '''
+    st.altair_chart(chart_2022, use_container_width=True, theme = 'streamlit')
+    with st.expander("Total Sales for 2022"):
         sums2022 = data_2022.groupby('GICS Sector')['salecs'].sum()
         st.write(sums2022, use_container_width = True)
+    
 
 #############################################
 # Table/DataFrame
