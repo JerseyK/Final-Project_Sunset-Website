@@ -1,6 +1,6 @@
 # Welcome to our [Team Project Website!](https://jerseyk-final-project-sunset-website-welcome-eoomf2.streamlit.app)
 
-This is a website to showcase our final project for FIN 377 - Data Science for Finance course at Lehigh University.
+This is a website to showcase our final project for FIN 377 - Data Science for Finance course at Lehigh University. This website was made using [streamlit.io to create a dashboard for our visual analysis.
 
 ## Table of Contents
 1. [Introduction](#introduction)
