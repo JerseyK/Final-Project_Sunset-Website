@@ -50,6 +50,34 @@ with st.expander("Column Variable Description"):
 [Accounting 2018-2022](https://github.com/JerseyK/Final-Project_Sunset/blob/d3a36fde0bb19d897fb15effcb85ffb0f04ec78b/inputs/acct_data.csv): This dataset was also provided by Dr. Bowen and is comprised of accounting variables we requested.
 '''
 
+with st.expander ("Dr. Bowen's Code for Accounting Variables"):
+    st.code('''clear
+set more off
+capture log close
+
+/* PARAMETERS */
+
+/* create download folder and cd into it */
+
+cap mkdir "input_data"
+cd        "input_data"
+
+/* **** Compustat **** */
+
+local fyear_lo 2018
+local fyear_hi 2023
+local query "SELECT lnk.lpermno, lnk.lpermco, cst.* FROM crsp.ccmxpf_lnkhist lnk INNER JOIN comp.funda cst ON lnk.gvkey = cst.gvkey WHERE lnk.linktype IN ('LU', 'LC')    AND lnk.linkprim IN ('P', 'C')    AND lnk.linkdt <= cst.datadate    AND (cst.datadate <= lnk.linkenddt OR lnk.linkenddt IS NULL )   AND cst.indfmt = 'INDL'    AND cst.datafmt = 'STD'    AND cst.popsrc = 'D'    AND cst.consol = 'C'     AND cst.fyear BETWEEN `fyear_lo' AND `fyear_hi' ORDER BY lnk.gvkey, cst.datadate"
+
+clear
+odbc load, exec( "`query'" ) dsn("wrds-pgdata-64")
+
+save ccm, replace
+
+
+use ccm, clear
+
+keep gvkey fyear sale acominc at capx capxv cogs gp epsfx ib ni oibdp rect invt ap''')
+
 code1 = '''comp = pd.read_csv('inputs/cust_supply_2019_2022.csv')
 sp500 = pd.read_csv('inputs/sp500_2022.csv')
 acct_raw = pd.read_csv("inputs/acct_data.csv"'''
