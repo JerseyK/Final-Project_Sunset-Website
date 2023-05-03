@@ -163,10 +163,10 @@ st.divider() # Draws a horizontal line
 st.subheader('DataFrames')
 
 # DataFrames
-with st.expander("Filtered Compustat DataFrame"):
+with st.expander("Compustat DataFrame for Selected Company "):
     st.table(data)
 
-with st.expander("Filtered Accounting DataFrame"):
+with st.expander("Accounting DataFrame for Selected Company "):
     st.table(acct)
 
 

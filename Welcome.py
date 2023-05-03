@@ -124,7 +124,7 @@ st.divider() # Draws a horizontal line
 # DataFrames
 #############################################
 st.subheader('DataFrames')
-with st.expander("2019 DataFrame"):
+with st.expander("2019 Compustat DataFrame"):
     st.table(data_2019)
-with st.expander("2022 DataFrame"):
+with st.expander("2022 Compustat DataFrame"):
     st.table(data_2022)
