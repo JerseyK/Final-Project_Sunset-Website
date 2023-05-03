@@ -224,6 +224,7 @@ filtered.to_csv("outputs/compustat_final.csv", index = False)
 
 ## Analysis <a name="analysis"></a>
 For the full analysis please check out our dashboard [here](https://jerseyk-final-project-sunset-website-welcome-eoomf2.streamlit.app/).
+The python packaged used were: `pandas`, `numpy`, `ploty.express`, `altair`, and `streamlit`. 
 
 
 ## Conclusion <a name="conclu"></a>
