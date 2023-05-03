@@ -77,11 +77,11 @@ data_2022 = raw_data[raw_data["fyear"] == 2022]
 #############################################
 ### creating the charts
 chart_2019 = alt.Chart(data_2019).mark_bar().encode(
-    y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000])),
+    y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000]), title = 'salecs (M)'),
     x=alt.X('GICS Sector'))
 
 chart_2022 = alt.Chart(data_2022).mark_bar().encode(
-    y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000])),
+    y=alt.Y('salecs', scale=alt.Scale(domain=[0, 1600000]), title = 'salecs (M)'),
     x=alt.X('GICS Sector'))
 
 ### displaying the charts
