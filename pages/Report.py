@@ -3,7 +3,7 @@ import pandas as pd
 
 # Page config
 st.set_page_config(
-    page_title="Report",
+    page_title="Project - Sunset",
     page_icon = "🌅",
     layout = "wide"
 )

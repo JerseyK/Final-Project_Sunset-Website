@@ -9,7 +9,7 @@ import altair as alt
 
 # Page config
 st.set_page_config(
-    page_title="Company Analysis",
+    page_title="Project - Sunset",
     page_icon ="🌅",
     layout = "wide"
 )
